@@ -1,0 +1,6 @@
+flask==2.1.2
+requests==2.28.1
+lxml==4.9.1
+pygal==3.0.0
+
+
