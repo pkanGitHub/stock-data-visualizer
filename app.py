@@ -5,4 +5,5 @@ app = flask.Flask(__name__)
 
 def home():
     return "This is the stock visualizer"
+    
 app.run()
