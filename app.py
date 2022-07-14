@@ -25,13 +25,13 @@ def get_symbol():
     return symbol
 
 
-def get_data(time_series, start_date, end_date):
+def get_data(time_series, start_date, end_date, key):
     url = time_series
     # url = f"https://www.alphavantage.co/query?function={time_series}&symbol={symbol}&apikey={API_KEY}"
     # url = get_url(symbol, timeSeries, API_KEY)
     stock_data = requests.get(url).json()
     # print(stock_data['Weekly Time Series']['2022-07-13']['1. open'])
-    for key, value in stock_data['Weekly Time Series'].items():
+    for key, value in stock_data[key].items():
         # to print dates between start date and end date
         if (key > start_date) and (key < end_date):
             print(key, value)
@@ -87,20 +87,20 @@ def time_series_selection(symbol):
     choice = get_time_series()
 
     # pass symbol in and get url from this function
-
+    url = f"https://www.alphavantage.co/query?function="
     if choice == 1:
-        return f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=5min&apikey={API_KEY}"
-        # return "TIME_SERIES_INTRADAY"
+        url = f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&outputsize=full&interval=5min&apikey={API_KEY}"
+        key = "Time Series (5min)"
     elif choice == 2:
-        return f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={API_KEY}"
-        # return "TIME_SERIES_DAILY"
+        url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&outputsize=full&apikey={API_KEY}"
+        key = "Time Series (Daily)"
     elif choice == 3:
-        return f"https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol={symbol}&apikey={API_KEY}"
-        # return "TIME_SERIES_Weekly"
+        url = f"https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol={symbol}&outputsize=full&apikey={API_KEY}"
+        key = "Weekly Time Series"
     elif choice == 4:
-        return f"https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol={symbol}&apikey={API_KEY}"
-        # return "TIME_SERIES_Monthly"
-
+        url = f"https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol={symbol}&outputsize=full&apikey={API_KEY}"
+        key = "Monthly Time Series"
+    return [url, key]
 
 # prompt user for start date
 def get_start_date():
@@ -142,11 +142,11 @@ def main():
         print("\nStock Data Visualizer\n-----------------------\n")
         symbol = get_symbol()
         chart_type = get_chart_type()
-        time_series = time_series_selection(symbol)
+        time_series, key = time_series_selection(symbol)
         start_date = get_start_date()
         end_date = get_end_date(start_date)
 
-        get_data(time_series, start_date, end_date)
+        get_data(time_series, start_date, end_date, key)
 
         another = input("\nWould you like to view more stock data? Press 'y' to continue: ")
         if another != "y":
