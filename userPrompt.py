@@ -49,7 +49,7 @@ def time_series_selection(symbol):
 
     # pass symbol in and get url from this function
     if choice == 1:
-        return f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=15min&outputsize=full&apikey={API_KEY}"
+        return f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=60min&outputsize=full&apikey={API_KEY}"
     elif choice == 2:
         return f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&outputsize=full&apikey={API_KEY}"
     elif choice == 3:
