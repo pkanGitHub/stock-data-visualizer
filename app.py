@@ -59,7 +59,7 @@ def get_data(time_series, start_date, end_date):
 def graph_data_pygal(stock_name, chart_type, start_date, end_date, dates, opens, closes, highs, lows):
     # create a pygal chart
 
-    if(chart_type == 1):
+    if(chart_type == 2):
         chart = pygal.Line(x_label_rotation=90)
     else:
         chart = pygal.Bar(x_label_rotation=90)
