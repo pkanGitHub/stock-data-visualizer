@@ -56,8 +56,8 @@ def main():
         dates, opens, closes, highs,lows, volumes = get_data(time_series, start_date, end_date)
         graph_data_pygal(symbol, chart_type, start_date, end_date, dates, opens, closes, highs, lows)
 
-        another = input("\nWould you like to view more stock data? Press 'y' to continue: ")
-        if another != "y":
+        another = input("\nWould you like to view more stock data? Press 'y or yes' to continue: ").lower()
+        if another != "y" and another != "yes":
             print("Thank you, goodbye!")
             break
 
