@@ -1,6 +1,6 @@
 # Stock Data Visualizer
 
-This is a python application that will take user input from the terminal, plot it accordingly to get the url for the API, and render a stock chart in the browser based on Alpha Vantage API.
+This is a python application that will take user input from the terminal, plot it accordingly to get the URL for the API, and render a stock chart in the browser based on Alpha Vantage API.
 
 ---
 
