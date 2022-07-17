@@ -2,10 +2,7 @@ from flask import Flask, jsonify
 import requests
 from userPrompt import *
 
-app = Flask(__name__)
-app.config.from_pyfile('config.py')
 
-API_KEY = app.config.get("API_KEY")
 
 symbol = get_symbol()
 chart = chart_type_selection()
